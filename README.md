@@ -8,11 +8,10 @@ from JoeDevelops. This is a fun project in order to teach myself elements of
 Python and to familiarize myself with aspects of the Twitter API. Through this
 project, I also learned about text generation and data storage methods.  
   
-#### Purpose
-***  
+### Purpose  
 The purpose of this project is to combine the tweets of Kylie Jenner with the 
 texts of Karl Marx, and to have those combinations be tweeted automatically 
 from a special twitter account with the handle @KylieMarxBot.  
 
-#### Methods
-***  
+### Method
+* Tweets from @KylieJenner were accessed through Tweepy

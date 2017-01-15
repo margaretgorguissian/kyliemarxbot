@@ -15,3 +15,9 @@ from a special twitter account with the handle @KylieMarxBot.
 
 ### Method
 * Tweets from @KylieJenner were accessed through Tweepy
+
+### Resources/References/Inspiration  
+* [Make America Tweet Again](http://joedevelops.com/2016/07/30/make-america-tweet-again-part-1/)
+* [Generating pseudo random text with Markov chains using Python](http://agiliq.com/blog/2009/06/generating-pseudo-random-text-with-markov-chains-u/)
+* [Generating a random string](https://pythontips.com/2013/07/28/generating-a-random-string/)
+* [Chomsky random text generator](http://code.activestate.com/recipes/440546-chomsky-random-text-generator/)

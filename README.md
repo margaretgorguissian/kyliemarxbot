@@ -21,3 +21,5 @@ from a special twitter account with the handle @KylieMarxBot.
 * [Generating pseudo random text with Markov chains using Python](http://agiliq.com/blog/2009/06/generating-pseudo-random-text-with-markov-chains-u/)
 * [Generating a random string](https://pythontips.com/2013/07/28/generating-a-random-string/)
 * [Chomsky random text generator](http://code.activestate.com/recipes/440546-chomsky-random-text-generator/)
+* [Parsing JSON in Python](https://temboo.com/python/parsing-json)
+* [Karl Marx in Project Gutenberg](http://www.gutenberg.org/ebooks/author/46)

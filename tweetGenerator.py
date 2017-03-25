@@ -128,9 +128,18 @@ class KylieTweetGenerator(TweetGenerator):
 		else:
 			print("Please load Tweet Data Before Collecting Hashtags.")
 
+	def removeLinks(self):
+		if self.rawTweets:
+			linkRegex = r'http:\w+[?!,]?'
+			for tweet in self.rawTweets:
+				re.sub(linkRegex, '', tweet)
+		else:
+			print("Please load Tweet Data Before Removing Links.")
+
 	def loadTweets(self, fileName):
 		TweetGenerator.loadTweets(self, fileName)
 		self.collectHashtags()
+		self.removeLinks()
 
 	def generateKylieTweet(self):
 		finalTweet = []

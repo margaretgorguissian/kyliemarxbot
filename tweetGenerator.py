@@ -87,11 +87,15 @@ class TweetGenerator:
 						'markovDictionary':self.markovDictionary,
 						'rawTweets':self.rawTweets}
 		self.saveJSON(allGenData, fileName)
+##class MarxMaker:
+##	def __init__(self, sourceFile=None):
 
 class KylieTweetGenerator(TweetGenerator):
 	def __init__(self, sourceFile=None):
 		self.KJHashtags = []
 		self.KJWords = ["lips", "Tyga", "lipkit", "realizing things", "snapchat"]
+		## can I put this in a different class?
+		self.MarxWords = ["communist", "struggle", "liberation", "proleteriat", "class struggles", "revolution", "bourgeoisie", "exploit", "labor", "opposition", "means of production","capitalism"]
 		if sourceFile:
 			TweetGenerator.__init__(self, sourceFile)
 		else:
@@ -134,8 +138,11 @@ class KylieTweetGenerator(TweetGenerator):
 			finalTweet =[]
 			for _ in range (randint(1, 3)):
 				finalTweet.append(self.generateTweet())
+			## this can be done so much better
 			if randint(0, 1):
-				finalTweet.append(self.KJWords[randint(0, len(self.KJWords) - 1)])
+				finalTweet.append(self.KJWords[randint(0, len(self.MarxWords) - 1)])
+			if randint(0, 1):
+				finalTweet.append(self.MarxWords[randint(0, len(self.KJWords) - 1)])
 			if randint(0, 1):
 				finalTweet.append(self.KJHashtags[randint(0, len(self.KJHashtags) - 1)])
 			finalTweet = " ".join(finalTweet)

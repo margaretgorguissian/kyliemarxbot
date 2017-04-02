@@ -1,7 +1,7 @@
 # @KylieMarxBot  
 A twitter bot that concatenates tweets from Kylie Jenner with excerpts from Karl Marx's collected works  
 **Author Name:** Margaret Gorguissian  
-**Date:** 01/14/2017
+**Date:** 03/25/2017
 ***  
 This project made heavy use of the [Make America Tweet Again](http://joedevelops.com/2016/07/30/make-america-tweet-again-part-1/) tutorial
 from JoeDevelops. This is a fun project in order to teach myself elements of
@@ -15,6 +15,9 @@ from a special twitter account with the handle @KylieMarxBot.
 
 ### Method
 * Tweets from @KylieJenner were accessed through Tweepy
+
+### Issues
+* Having issue reading Marx Dump, even after separating sentences.
 
 ### Resources/References/Inspiration  
 * [Make America Tweet Again](http://joedevelops.com/2016/07/30/make-america-tweet-again-part-1/)

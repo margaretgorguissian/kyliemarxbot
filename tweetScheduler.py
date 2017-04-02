@@ -16,12 +16,12 @@ try:
     print("Attempting to Load/Get New Tweet Set")
     try:
         # Load Existing Tweet Set if We Already Have One
-        GENERATOR = KylieTweetGenerator(TWITTER_NAME + "Tweets")
+        GENERATOR = KylieTweetGenerator(TWITTER_NAME + "Tweets", MarxDump)
         print("Tweet Generator Created @ {}".format(datetime.now()))
     except:
         # Gather New Tweet Set
         print("Getting Most Current Tweets @ {}".format(datetime.now()))
-        system("python getTweetsFromUser.py " + TWITTER_NAME)
+        system("python getUserTweets.py " + TWITTER_NAME)
         print("Tweet Set Collected @ {}".format(datetime.now()))
         GENERATOR = KylieTweetGenerator(TWITTER_NAME + "Tweets")
         print("Tweet Generator Created @ {}".format(datetime.now()))
@@ -35,7 +35,7 @@ except:
 
 def updateTweets():
     try:
-        system("python getTweetsFromUser.py " + TWITTER_NAME)
+        system("python getTweets.py " + TWITTER_NAME)
         newGen = KylieTweetGenerator(TWITTER_NAME + "Tweets")
         print("Tweet Set Updated @ {}".format(datetime.now()))
         GENERATOR = newGen
@@ -77,7 +77,7 @@ def cleanTweet(tweet):
         tweet.replace('"', '')
     if "@" in tweet:
         tweet.replace("@","")
-    if "amp;" in tweet:
+    if "&amp;" in tweet:
         tweet.replace("amp;", "")
     return tweet
 

@@ -18,7 +18,8 @@ from a special twitter account with the handle @KylieMarxBot.
 
 ### Issues
 * Having issue reading Marx Dump, even after separating sentences. Program quits when it comes time to read the Marx file
-⋅⋅⋅⋅⋅* From troubleshooting and research, I believe it's because my Marx JSON file is too big for the JSON reader to handle. I am trying with a much smaller Marx file, and will update from there. (5/24/2017)
+.....* From troubleshooting and research, I believe it's because my Marx JSON file is too big for the JSON reader to handle. The Marx JSON file is 80kb, while the Kylie Jenner JSON file is only 5kb. I am trying with a much smaller Marx file, and will update from there. (5/24/2017)
+
 
 ### Resources/References/Inspiration  
 * [Make America Tweet Again](http://joedevelops.com/2016/07/30/make-america-tweet-again-part-1/)

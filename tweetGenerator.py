@@ -1,4 +1,7 @@
 import json
+import logging
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.debug('This is a log message.')
 import re
 from random import randint
 
@@ -109,7 +112,10 @@ class MarxMaker:
 
 	def loadText(self, fileName):
 		print("Loading Marx JSON ...")
-		self.rawText = self.loadJSON(fileName)
+		print(fileName)
+		with open(fileName, 'r') as fileHandler:
+			print("in File")
+			self.rawText = json.load(fileHandler)
 		print("Marx JSON loaded.")
 
 	def processText(self):
@@ -162,10 +168,13 @@ class MarxMaker:
 				marxText.append(word)
 		return " ".join(marxText)	
 
-	def loadJSON(self, fileName):
-		with open(fileName, 'r') as fileHandler:
-			jsonData = json.load(fileHandler)
-		return jsonData
+	# def loadJSON(self, fileName):
+	# 	print("in loadJSON for MarxMaker")
+	# 	print("attempting to load the JSON for file:")
+	# 	print(fileName)
+	# 	with open(fileName, 'r') as fileHandler:
+	# 		jsonData = json.load(fileHandler)
+	# 	return jsonData
 
 	def saveJSON(self, jsonData, fileName):
 		with open(fileName, 'w') as fileHandler:

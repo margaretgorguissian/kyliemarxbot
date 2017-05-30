@@ -21,6 +21,8 @@ class TweetGenerator:
 		self.rawTweets = self.loadJSON(fileName)
 
 	def processTweets(self):
+		self.removeLinks()
+		self.removeTwitterTags()   
 		endingChars = ["!", "?", ".", ","]
 
 		priorWord = None
@@ -40,6 +42,22 @@ class TweetGenerator:
 					self.updateDictionary(priorWord, word)
 					priorWord = word
 
+	def removeLinks(self):
+		if self.rawTweets:
+			print("Removing links")
+			linkRegex = r'https\w+[?!,]?'
+			for tweet in self.rawTweets:
+				re.sub(linkRegex, '', tweet)
+		else:
+			print("Please load Tweet Data Before Removing Links.")
+
+	def removeTwitterTags(self):
+		if self.rawTweets:
+			tagRegex = r'@\w+[?.!,]?'
+			for tweet in self.rawTweets:
+				re.sub(tagRegex, '', tweet)
+		else:
+			print("Please load Tweet Data Before Removing Links.")
 	#def loadMarx(self, fileName):
 	#	marxWords = self.loadJSON(fileName)
 	#	self.rawTweets.append(marxWords)
@@ -225,26 +243,11 @@ class KylieTweetGenerator(TweetGenerator, MarxMaker):
 		else:
 			print("Please load Tweet Data Before Collecting Hashtags.")
 
-	def removeLinks(self):
-		if self.rawTweets:
-			linkRegex = r'https:\w+[?!,]?'
-			for tweet in self.rawTweets:
-				re.sub(linkRegex, '', tweet)
-		else:
-			print("Please load Tweet Data Before Removing Links.")
-
-	def removeTwitterTags(self):
-		if self.rawTweets:
-			tagRegex = r'@\w+[?.!,]?'
-			for tweet in self.rawTweets:
-				re.sub(tagRegex, '', tweet)
-		else:
-			print("Please load Tweet Data Before Removing Links.")
 
 	def loadTweets(self, fileName):
 		TweetGenerator.loadTweets(self, fileName)
-		self.removeLinks()
-		self.removeTwitterTags()
+		#self.removeLinks()
+		#self.removeTwitterTags()
 		self.collectHashtags()
 
 	def generateKylieTweet(self):

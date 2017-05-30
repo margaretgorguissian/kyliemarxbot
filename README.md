@@ -18,7 +18,10 @@ from a special twitter account with the handle @KylieMarxBot.
 
 ### Issues
 * Having issue reading Marx Dump, even after separating sentences. Program quits when it comes time to read the Marx file
-.....* From troubleshooting and research, I believe it's because my Marx JSON file is too big for the JSON reader to handle. The Marx JSON file is 80kb, while the Kylie Jenner JSON file is only 5kb. I am trying with a much smaller Marx file, and will update from there. (5/24/2017)
+    * From troubleshooting and research, I believe it's because my Marx JSON file is too big for the JSON reader to handle. The Marx JSON file is 80kb, while the Kylie Jenner JSON file is only 5kb. I am trying with a much smaller Marx file, and will update from there. (5/24/2017)
+    * I shortened the Marx Dump significantly, and the Kylie Marx tweet generation was successful. (5/30/2017)
+* By adding Marx text and Kylie tweets to the same Markov dictionary, the Kylie Marx tweets are largely non-sensical. (When it is just generating a Kylie Jenner tweet using the Markov dictionary, it performs much better). There is probably a better method of generating Kylie Marx tweets than just using a single Markov dictionary.
+    * I am contemplating generating half the tweet using a Kylie Jenner Markov dictionary, and the other half of the tweet using a Karl Marx Markov dictionary, and then combining the two. (5/30/2017)
 
 
 ### Resources/References/Inspiration  

@@ -108,7 +108,7 @@ class MarxMaker:
 			#self.loadMarx("h/workspace/tweetbot/MarxDump")
 			self.processText()
 			##self.loadMarx("../MarxDump")
-			self.saveText(sourceFile + "Markov")
+			self.saveTextGen(sourceFile + "Markov")
 
 	def loadText(self, fileName):
 		print("Loading Marx JSON ...")
@@ -194,6 +194,7 @@ class KylieTweetGenerator(TweetGenerator, MarxMaker):
 			if marxFile:
 				print("marxFile exists")
 				MarxMaker.__init__(self, marxFile)
+			print("TweetGenerator initialized.")
 		else:
 			TweetGenerator.__init__(self)
 
@@ -254,7 +255,7 @@ class KylieTweetGenerator(TweetGenerator, MarxMaker):
 				finalTweet.append(self.generateTweet())
 			# this can be done so much better
 			#if randint(0, 1):
-				finalTweet.append(self.KJWords[randint(0, len(self.KJWords) - 1)])
+				#finalTweet.append(self.KJWords[randint(0, len(self.KJWords) - 1)])
 			#if randint(0, 1):
 			#	finalTweet.append(self.MarxWords[randint(0, len(self.KJWords) - 1)])
 			if randint(0, 1):

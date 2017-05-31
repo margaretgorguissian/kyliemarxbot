@@ -44,7 +44,7 @@ class TweetGenerator:
 
 	def removeLinks(self):
 		if self.rawTweets:
-			print("Removing links")
+			#print("Removing links")
 			linkRegex = r'https\w+[?!,]?'
 			for tweet in self.rawTweets:
 				re.sub(linkRegex, '', tweet)
@@ -117,7 +117,7 @@ class TweetGenerator:
 
 class MarxMaker:
 	def __init__(self, sourceFile=None):
-		print("Initializing MarxMaker.")
+		#print("Initializing MarxMaker.")
 		self.rawText = []
 		self.initialStates = []
 		self.marxovDictionary = {}
@@ -138,7 +138,7 @@ class MarxMaker:
 
 	def processText(self):
 		endingChars = ["!", "?", ".", ",", "\n"]
-		print("Preparing to process Marx text.")
+		#print("Preparing to process Marx text.")
 		priorWord = None
 		for line in self.rawText:
 			for word in line.split() + [None]:
@@ -155,7 +155,7 @@ class MarxMaker:
 				else:
 					self.updateDictionary(priorWord, word)
 					priorWord = word
-		print("Marx text processed.")
+		#print("Marx text processed.")
 
 	def updateDictionary(self, priorWord, word):
 		if priorWord in self.markovDictionary:
@@ -177,22 +177,20 @@ class MarxMaker:
 		self.saveJSON(allGenData, fileName)
 
 	def generateMarxText(self):
+		#print("in generate MarxText")
 		word = self.initialStates[randint(0, len(self.initialStates) - 1)]
+		#print("word assigned")
 		marxText = [word]
 		while word != "END_OF_SENTENCE":
+			#print("in while loop")
+			#print(marxovDictionary[word])
+			#print("length established")
 			randomIndex = randint(0, len(self.markovDictionary[word]) - 1)
+			#print("index generated")
 			word = self.markovDictionary[word][randomIndex]
 			if not word == "END_OF_SENTENCE":
 				marxText.append(word)
 		return " ".join(marxText)	
-
-	# def loadJSON(self, fileName):
-	# 	print("in loadJSON for MarxMaker")
-	# 	print("attempting to load the JSON for file:")
-	# 	print(fileName)
-	# 	with open(fileName, 'r') as fileHandler:
-	# 		jsonData = json.load(fileHandler)
-	# 	return jsonData
 
 	def saveJSON(self, jsonData, fileName):
 		with open(fileName, 'w') as fileHandler:
@@ -204,8 +202,6 @@ class KylieTweetGenerator(TweetGenerator, MarxMaker):
 	def __init__(self, sourceFile=None, marxFile="MarxDumpSeparated"):
 		self.KJHashtags = []
 		self.KJWords = ["lips", "Tyga", "lipkit", "realizing things", "snapchat"]
-		## can I put this in a different class?
-		##self.MarxWords = ["communist", "struggle", "liberation", "proleteriat", "class struggles", "revolution", "bourgeoisie", "exploit", "labor", "opposition", "means of production","capitalism"]
 		if sourceFile:
 			print("sourceFile exists")
 			TweetGenerator.__init__(self, sourceFile)
@@ -221,6 +217,7 @@ class KylieTweetGenerator(TweetGenerator, MarxMaker):
 		self.initialStates = allGenData['initialStates']
 		self.rawTweets = allGenData['rawTweets']
 		self.markovDictionary = allGenData['markovDictionary']
+		#self.marxovDictionary = allGenData['marxovDictionary']
 		self.KJHashtags = allGenData['KJHashtags']
 		print("{} Loaded".format(fileName))
 
@@ -246,21 +243,18 @@ class KylieTweetGenerator(TweetGenerator, MarxMaker):
 
 	def loadTweets(self, fileName):
 		TweetGenerator.loadTweets(self, fileName)
-		#self.removeLinks()
-		#self.removeTwitterTags()
 		self.collectHashtags()
 
 	def generateKylieTweet(self):
+		#print("in generateKylieTweet")
 		finalTweet = []
 		while finalTweet == [] or len(finalTweet) > 144 or len(finalTweet) < 35:
 			finalTweet =[]
 			for _ in range (randint(1, 3)):
 				finalTweet.append(self.generateTweet())
-			# this can be done so much better
 			#if randint(0, 1):
-				#finalTweet.append(self.KJWords[randint(0, len(self.KJWords) - 1)])
-			#if randint(0, 1):
-			#	finalTweet.append(self.MarxWords[randint(0, len(self.KJWords) - 1)])
+				#print("attempting to generate MarxText.")
+				#finalTweet.append(self.generateMarxText())	
 			if randint(0, 1):
 				finalTweet.append(self.KJHashtags[randint(0, len(self.KJHashtags) - 1)])
 			finalTweet = " ".join(finalTweet)

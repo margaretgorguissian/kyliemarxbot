@@ -12,9 +12,7 @@ class TweetGenerator:
 		self.markovDictionary = {}
 		if sourceFile:
 			self.loadTweets(sourceFile)
-			#self.loadMarx("h/workspace/tweetbot/MarxDump")
 			self.processTweets()
-			##self.loadMarx("../MarxDump")
 			self.saveTweetGen(sourceFile + "Markov")
 
 	def loadTweets(self, fileName):
@@ -199,7 +197,7 @@ class MarxMaker:
 
 
 class KylieTweetGenerator(TweetGenerator, MarxMaker):
-	def __init__(self, sourceFile=None, marxFile="MarxDumpSeparated"):
+	def __init__(self, sourceFile=None, marxFile="MarxDump"):
 		self.KJHashtags = []
 		self.KJWords = ["lips", "Tyga", "lipkit", "realizing things", "snapchat"]
 		if sourceFile:

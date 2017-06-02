@@ -22,6 +22,7 @@ from a special twitter account with the handle @KylieMarxBot.
     * I shortened the Marx Dump significantly, and the Kylie Marx tweet generation was successful. (5/30/2017)
 * By adding Marx text and Kylie tweets to the same Markov dictionary, the Kylie Marx tweets are largely non-sensical. (When it is just generating a Kylie Jenner tweet using the Markov dictionary, it performs much better). There is probably a better method of generating Kylie Marx tweets than just using a single Markov dictionary-- because there are few shared words between Kylie Jenner and Karl Marx, Kylie Marx's tweets are very short and also do not make much sense.
     * I am contemplating generating half the tweet using a Kylie Jenner Markov dictionary, and the other half of the tweet using a Karl Marx Markov dictionary, and then combining the two. (5/30/2017)
+    * I have accepted that Kylie Marx's tweets will be nonsensical, and that is part of her charm. To make them funnier and also more coherent, I created a JSON file of famous quotes from Karl Marx instead of using chunks of The Communist Manifesto and Das Kapital. This decreased more specific words (and names of places) and increased words more regularly associated with Marx. Because this also increased the amount of articles and simple verbs, the generation of Markov chains is performing better because there is a greater chance of a tweet containing both Marx and Kylie content. (6/1/2017) 
 
 
 ### Resources/References/Inspiration  

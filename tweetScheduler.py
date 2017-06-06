@@ -75,10 +75,16 @@ def rateLimitNotExceeded():
 def cleanTweet(tweet):
     if tweet.count('"') == 1:
         tweet.replace('"', '')
-    if "@" in tweet:
-        tweet.replace("@","")
-    if "&amp;" in tweet:
-        tweet.replace("amp;", "")
+    while "@" in tweet:
+        try:
+            tweet.replace("@","")
+        except ValueError:
+            print("No @ in Tweet")
+    while "&amp;" in tweet:
+        try:
+            tweet.replace("amp;", "")
+        except ValueError:
+            print("No &amp; in Tweet")
     return tweet
 
 tweetScheduler = BackgroundScheduler()

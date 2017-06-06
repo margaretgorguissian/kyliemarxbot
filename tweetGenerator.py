@@ -5,6 +5,7 @@ logging.debug('This is a log message.')
 import re
 from random import randint
 
+# TweetGenerator makes a Markov dictionary of all of Kylie Jenner's tweets
 class TweetGenerator:
 	def __init__(self, sourceFile=None):
 		self.rawTweets = []
@@ -42,7 +43,6 @@ class TweetGenerator:
 
 	def removeLinks(self):
 		if self.rawTweets:
-			#print("Removing links")
 			linkRegex = r'https\w+[?!,]?'
 			for tweet in self.rawTweets:
 				re.sub(linkRegex, '', tweet)
@@ -56,9 +56,6 @@ class TweetGenerator:
 				re.sub(tagRegex, '', tweet)
 		else:
 			print("Please load Tweet Data Before Removing Links.")
-	#def loadMarx(self, fileName):
-	#	marxWords = self.loadJSON(fileName)
-	#	self.rawTweets.append(marxWords)
 
 	def updateDictionary(self, priorWord, word):
 		if priorWord in self.markovDictionary:
@@ -113,17 +110,14 @@ class TweetGenerator:
 						'rawTweets':self.rawTweets}
 		self.saveJSON(allGenData, fileName)
 
+# MarxMaker adds Marx text to the priorMarkov dictionary
 class MarxMaker:
 	def __init__(self, sourceFile=None):
-		#print("Initializing MarxMaker.")
 		self.rawText = []
 		self.initialStates = []
-		self.marxovDictionary = {}
 		if sourceFile:
 			self.loadText(sourceFile)
-			#self.loadMarx("h/workspace/tweetbot/MarxDump")
 			self.processText()
-			##self.loadMarx("../MarxDump")
 			self.saveTextGen(sourceFile + "Markov")
 
 	def loadText(self, fileName):
@@ -136,7 +130,6 @@ class MarxMaker:
 
 	def processText(self):
 		endingChars = ["!", "?", ".", ",", "\n"]
-		#print("Preparing to process Marx text.")
 		priorWord = None
 		for line in self.rawText:
 			for word in line.split() + [None]:
@@ -153,7 +146,6 @@ class MarxMaker:
 				else:
 					self.updateDictionary(priorWord, word)
 					priorWord = word
-		#print("Marx text processed.")
 
 	def updateDictionary(self, priorWord, word):
 		if priorWord in self.markovDictionary:
@@ -173,22 +165,6 @@ class MarxMaker:
 						'markovDictionary':self.markovDictionary,
 						'rawText':self.rawText}
 		self.saveJSON(allGenData, fileName)
-
-	def generateMarxText(self):
-		#print("in generate MarxText")
-		word = self.initialStates[randint(0, len(self.initialStates) - 1)]
-		#print("word assigned")
-		marxText = [word]
-		while word != "END_OF_SENTENCE":
-			#print("in while loop")
-			#print(marxovDictionary[word])
-			#print("length established")
-			randomIndex = randint(0, len(self.markovDictionary[word]) - 1)
-			#print("index generated")
-			word = self.markovDictionary[word][randomIndex]
-			if not word == "END_OF_SENTENCE":
-				marxText.append(word)
-		return " ".join(marxText)	
 
 	def saveJSON(self, jsonData, fileName):
 		with open(fileName, 'w') as fileHandler:
@@ -215,7 +191,6 @@ class KylieTweetGenerator(TweetGenerator, MarxMaker):
 		self.initialStates = allGenData['initialStates']
 		self.rawTweets = allGenData['rawTweets']
 		self.markovDictionary = allGenData['markovDictionary']
-		#self.marxovDictionary = allGenData['marxovDictionary']
 		self.KJHashtags = allGenData['KJHashtags']
 		print("{} Loaded".format(fileName))
 
@@ -238,21 +213,16 @@ class KylieTweetGenerator(TweetGenerator, MarxMaker):
 		else:
 			print("Please load Tweet Data Before Collecting Hashtags.")
 
-
 	def loadTweets(self, fileName):
 		TweetGenerator.loadTweets(self, fileName)
 		self.collectHashtags()
 
 	def generateKylieTweet(self):
-		#print("in generateKylieTweet")
 		finalTweet = []
 		while finalTweet == [] or len(finalTweet) > 144 or len(finalTweet) < 35:
 			finalTweet =[]
 			for _ in range (randint(1, 3)):
 				finalTweet.append(self.generateTweet())
-			#if randint(0, 1):
-				#print("attempting to generate MarxText.")
-				#finalTweet.append(self.generateMarxText())	
 			if randint(0, 1):
 				finalTweet.append(self.KJHashtags[randint(0, len(self.KJHashtags) - 1)])
 			finalTweet = " ".join(finalTweet)

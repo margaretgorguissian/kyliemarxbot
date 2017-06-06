@@ -33,3 +33,4 @@ from a special twitter account with the handle @KylieMarxBot.
 * [Chomsky random text generator](http://code.activestate.com/recipes/440546-chomsky-random-text-generator/)
 * [Parsing JSON in Python](https://temboo.com/python/parsing-json)
 * [Karl Marx in Project Gutenberg](http://www.gutenberg.org/ebooks/author/46)
+* [How to delete an item in a list if it exists?](https://stackoverflow.com/questions/4915920/how-to-delete-an-item-in-a-list-if-it-exists)

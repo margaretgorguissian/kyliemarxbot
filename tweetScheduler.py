@@ -33,6 +33,7 @@ except:
     print("Exiting tweetScheduler.py")
     quit()
 
+# Update Kylie Jenner tweet generator (+ dictionary)
 def updateTweets():
     try:
         system("python getTweets.py " + TWITTER_NAME)
@@ -42,6 +43,7 @@ def updateTweets():
     except:
         print("Tweet Set Update Failed @ {}".format(datetime.now()))
 
+# Post a Kylie Marx tweet
 def postTweet():
     tweet = cleanTweet(GENERATOR.generateKylieTweet())
     try:
@@ -52,6 +54,7 @@ def postTweet():
     except:
          print("Tweet Posting Failed @ {}".format(datetime.now()))
 
+# Follow everyone that follows Kylie Marx -- I do not call this
 def friendFollowers():
     print("Getting Followers List @ {}".format(datetime.now()))
     if rateLimitNotExceeded():
@@ -64,6 +67,7 @@ def friendFollowers():
                         API.create_friendship(follower.id)
                         FOLLOWERS.append(follower.id)
 
+# Checks to see if program is under API rate limit
 def rateLimitNotExceeded():
     status = API.rate_limit_status()['resources']['application']['/application/rate_limit_status']['remaining']
     if status > 0:
@@ -72,6 +76,7 @@ def rateLimitNotExceeded():
         print("Rate Limit Status: Rate Limit Exceeded @ {}".format(datetime.now()))
     return status > 0
 
+# Removes user tags and links from tweets
 def cleanTweet(tweet):
     if tweet.count('"') == 1:
         tweet.replace('"', '')
@@ -88,9 +93,11 @@ def cleanTweet(tweet):
     return tweet
 
 tweetScheduler = BackgroundScheduler()
+# Kylie Marx posts tweets every 5 minutes
 tweetScheduler.add_job(postTweet, 'interval', minutes=5, id='postTweet')
+# A new tweet set is downloaded from Kylie Jenner at 11:45 pm
 tweetScheduler.add_job(updateTweets, 'cron', hour=23, minute=45, id='updateTweets')
-tweetScheduler.add_job(friendFollowers, 'cron', hour=00, id='friendFollowers')
+#tweetScheduler.add_job(friendFollowers, 'cron', hour=00, id='friendFollowers')
 tweetScheduler.start()
 
 while True:

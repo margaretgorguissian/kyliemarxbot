@@ -15,6 +15,8 @@ from a special twitter account with the handle @KylieMarxBot.
 
 ### Method
 * Tweets from @KylieJenner were accessed through Tweepy
+* Tweets were stored in JSON format
+
 
 ### Issues
 * Having issue reading Marx Dump, even after separating sentences. Program quits when it comes time to read the Marx file

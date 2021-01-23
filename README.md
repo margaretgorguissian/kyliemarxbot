@@ -1,6 +1,5 @@
 # @KylieMarxBot  
 A twitter bot that concatenates tweets from Kylie Jenner with excerpts from Karl Marx's collected works  
-**Author Name:** Margaret Gorguissian  
 **Date:** 03/25/2017
 ***  
 This project made heavy use of the [Make America Tweet Again](http://joedevelops.com/2016/07/30/make-america-tweet-again-part-1/) tutorial
